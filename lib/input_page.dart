@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:bmi_calculator/gender_card.dart';
+import 'package:bmi_calculator/reusable_card.dart';
 
 const double bottomContainerHeight = 60;
 const Color activeCardColor = Color(0XFF1d1E33);
@@ -23,11 +26,19 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: activeCardColor,
+                    cardChild: GenderCard(
+                      cardIcon: Icon(FontAwesomeIcons.mars, size: 60),
+                      cardTitle: 'MALE',
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: activeCardColor,
+                    cardChild: GenderCard(
+                      cardIcon: Icon(FontAwesomeIcons.venus, size: 60),
+                      cardTitle: 'FEMALE',
+                    ),
                   ),
                 ),
               ],
@@ -36,6 +47,7 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: ReusableCard(
               color: activeCardColor,
+              cardChild: Container(),
             ),
           ),
           Expanded(
@@ -44,11 +56,13 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: activeCardColor,
+                    cardChild: Column(),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: activeCardColor,
+                    cardChild: Column(),
                   ),
                 ),
               ],
@@ -61,23 +75,6 @@ class _InputPageState extends State<InputPage> {
             height: bottomContainerHeight,
           ),
         ],
-      ),
-    );
-  }
-}
-
-class ReusableCard extends StatelessWidget {
-  ReusableCard({required this.color});
-
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10),
       ),
     );
   }
