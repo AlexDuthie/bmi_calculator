@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/gender_card.dart';
 import 'package:bmi_calculator/reusable_card.dart';
-
-const double bottomContainerHeight = 60;
-const Color activeCardColor = Color(0XFF1d1E33);
-const inactiveCardColor = Color(0xFF111328);
+import 'package:bmi_calculator/constants.dart';
 
 enum Gender {
   undisclosed,
