@@ -1,9 +1,10 @@
-import 'package:bmi_calculator/results_page.dart';
+import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:bmi_calculator/gender_card.dart';
-import 'package:bmi_calculator/reusable_card.dart';
+import 'package:bmi_calculator/components/gender_card.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 
 enum Gender {
   undisclosed,
@@ -20,19 +21,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.undisclosed;
   int height = 180;
   int weight = 60;
-  int age = 16;
-
-  void weightMinus() {
-    setState(() {
-      weight--;
-    });
-  }
-
-  void weightAdd() {
-    setState(() {
-      weight++;
-    });
-  }
+  int age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -148,9 +137,20 @@ class _InputPageState extends State<InputPage> {
                           'WEIGHT',
                           style: kLabelTextStyle,
                         ),
-                        Text(
-                          '$weight',
-                          style: kHeightTextStyle,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              '$weight',
+                              style: kHeightTextStyle,
+                            ),
+                            Text(
+                              'kg',
+                              style: kLabelTextStyle,
+                            )
+                          ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -255,10 +255,18 @@ class _InputPageState extends State<InputPage> {
           ),
           GestureDetector(
             onTap: () {
+
+              CalculatorBrain calc = CalculatorBrain(
+                  height: height, weight: weight);
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ResultsPage(),
+                  builder: (context) => ResultsPage(
+                    bmiResult: calc.calculateBMI(),
+                    resultText: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                  ),
                 ),
               );
             },

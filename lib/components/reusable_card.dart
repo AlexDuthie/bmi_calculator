@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'input_page.dart';
+import '../screens/input_page.dart';
 
 class ReusableCard extends StatelessWidget {
   ReusableCard({required this.color, required this.cardChild, this.gender = Gender.undisclosed});

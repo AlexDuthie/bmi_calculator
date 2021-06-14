@@ -1,8 +1,14 @@
 import 'package:bmi_calculator/constants.dart';
-import 'package:bmi_calculator/reusable_card.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:flutter/material.dart';
 
 class ResultsPage extends StatelessWidget {
+
+  ResultsPage({required this.bmiResult, required this.resultText, required this.interpretation});
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -33,19 +39,23 @@ class ResultsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 80,),
+                  SizedBox(height: 55,),
                   Text(
-                    'OVERWEIGHT',
-                    style: TextStyle(color: Colors.greenAccent),
+                    resultText.toUpperCase(),
+                    style: TextStyle(color: Colors.greenAccent, fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                  SizedBox(height: 50,),
+                  SizedBox(height: 30,),
                   Text(
-                    'Normal',
-                    style: kResultTextStyle,
+                    bmiResult.toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 100,
+                      fontWeight: FontWeight.bold
+                    ),
                   ),
-                  SizedBox(height: 80,),
+                  SizedBox(height: 40,),
                   Text(
-                    'You have blad blh abl'
+                    interpretation.toUpperCase(),
+                    textAlign: TextAlign.center,
                   )
                 ],
               ),
