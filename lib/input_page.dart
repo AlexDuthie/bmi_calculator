@@ -19,6 +19,19 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.undisclosed;
   int height = 180;
   int weight = 60;
+  int age = 16;
+
+  void weightMinus() {
+    setState(() {
+      weight--;
+    });
+  }
+
+  void weightAdd() {
+    setState(() {
+      weight++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,22 +154,36 @@ class _InputPageState extends State<InputPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            RoundIconButton(
-                              icon: FontAwesomeIcons.minus,
-                              function: (){
-                                setState(() {
-                                  weight--;
-                                });
-                              },
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Container(
+                                color: Color(0xFF4C4F5E),
+                                child: IconButton(
+                                  onPressed: (){
+                                    setState(() {
+                                      weight--;
+                                    });
+                                  },
+                                  icon: Icon(FontAwesomeIcons.minus),
+                                  iconSize: 30,
+                                ),
+                              ),
                             ),
                             SizedBox(width: 10,),
-                            RoundIconButton(
-                              icon: FontAwesomeIcons.plus,
-                              function: (){
-                                setState(() {
-                                  weight++;
-                                });
-                              },
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Container(
+                                color: Color(0xFF4C4F5E),
+                                child: IconButton(
+                                  onPressed: (){
+                                    setState(() {
+                                      weight++;
+                                    });
+                                  },
+                                  icon: Icon(FontAwesomeIcons.plus),
+                                  iconSize: 30,
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -167,7 +194,55 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: kActiveCardColor,
-                    cardChild: Column(),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          '$age',
+                          style: kHeightTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Container(
+                                color: Color(0xFF4C4F5E),
+                                child: IconButton(
+                                  onPressed: (){
+                                    setState(() {
+                                      age--;
+                                    });
+                                  },
+                                  icon: Icon(FontAwesomeIcons.minus),
+                                  iconSize: 30,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 10,),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Container(
+                                color: Color(0xFF4C4F5E),
+                                child: IconButton(
+                                  onPressed: (){
+                                    setState(() {
+                                      age++;
+                                    });
+                                  },
+                                  icon: Icon(FontAwesomeIcons.plus),
+                                  iconSize: 30,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -177,35 +252,19 @@ class _InputPageState extends State<InputPage> {
             color: Color(0xFFEB1555),
             width: double.infinity,
             height: kBottomContainerHeight,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(FontAwesomeIcons.mobile),
+                SizedBox(width: 5,),
+                Text('created by Alex Duthie'),
+                SizedBox(width: 5,),
+                Icon(FontAwesomeIcons.smileWink)
+              ],
+            ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-
-  RoundIconButton({
-    this.icon = FontAwesomeIcons.question,
-    required this.function
-  });
-
-  final IconData icon;
-  final Function function;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      elevation: 0,
-      onPressed: function(),
-      shape: CircleBorder(),
-      fillColor: Color(0XFF4C4F5B),
-      constraints: BoxConstraints.tightFor(
-        width: 56,
-        height: 56,
-      ),
-      child: Icon(icon),
     );
   }
 }
