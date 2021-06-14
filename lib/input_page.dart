@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/gender_card.dart';
@@ -159,7 +160,7 @@ class _InputPageState extends State<InputPage> {
                               child: Container(
                                 color: Color(0xFF4C4F5E),
                                 child: IconButton(
-                                  onPressed: (){
+                                  onPressed: () {
                                     setState(() {
                                       weight--;
                                     });
@@ -169,13 +170,15 @@ class _InputPageState extends State<InputPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 10,),
+                            SizedBox(
+                              width: 10,
+                            ),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(50),
                               child: Container(
                                 color: Color(0xFF4C4F5E),
                                 child: IconButton(
-                                  onPressed: (){
+                                  onPressed: () {
                                     setState(() {
                                       weight++;
                                     });
@@ -213,7 +216,7 @@ class _InputPageState extends State<InputPage> {
                               child: Container(
                                 color: Color(0xFF4C4F5E),
                                 child: IconButton(
-                                  onPressed: (){
+                                  onPressed: () {
                                     setState(() {
                                       age--;
                                     });
@@ -223,13 +226,15 @@ class _InputPageState extends State<InputPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 10,),
+                            SizedBox(
+                              width: 10,
+                            ),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(50),
                               child: Container(
                                 color: Color(0xFF4C4F5E),
                                 child: IconButton(
-                                  onPressed: (){
+                                  onPressed: () {
                                     setState(() {
                                       age++;
                                     });
@@ -248,19 +253,21 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: Color(0xFFEB1555),
-            width: double.infinity,
-            height: kBottomContainerHeight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(FontAwesomeIcons.mobile),
-                SizedBox(width: 5,),
-                Text('created by Alex Duthie'),
-                SizedBox(width: 5,),
-                Icon(FontAwesomeIcons.smileWink)
-              ],
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(),
+                ),
+              );
+            },
+            child: Container(
+              color: Color(0xFFEB1555),
+              width: double.infinity,
+              height: kBottomContainerHeight,
+              child: Center(child: Text('CALCULATE', style: kBottomContainerStyle,)),
+              margin: EdgeInsets.only(top: 10),
             ),
           ),
         ],

@@ -13,3 +13,13 @@ const kLabelTextStyle = TextStyle(
   fontSize: 20,
   color: Color(0xFF8D8E98),
 );
+
+const kBottomContainerStyle = TextStyle(
+  fontSize: 25,
+  fontWeight: FontWeight.bold
+);
+
+const kResultTextStyle = TextStyle (
+  fontSize: 50,
+  fontWeight: FontWeight.bold
+);
