@@ -18,7 +18,7 @@ class GenderCard extends StatelessWidget {
         ),
         Text(
           '$cardTitle',
-          style: labelTextStyle,
+          style: kLabelTextStyle,
         ),
       ],
     );

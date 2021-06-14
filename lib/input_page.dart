@@ -16,8 +16,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-
   Gender selectedGender = Gender.undisclosed;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +26,7 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -38,7 +39,9 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     child: ReusableCard(
-                      color: selectedGender == Gender.male ? activeCardColor : inactiveCardColor,
+                      color: selectedGender == Gender.male
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
                       cardChild: GenderCard(
                         cardIcon: Icon(FontAwesomeIcons.mars, size: 60),
                         cardTitle: 'MALE',
@@ -54,7 +57,9 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     child: ReusableCard(
-                      color: selectedGender == Gender.female ? activeCardColor : inactiveCardColor,
+                      color: selectedGender == Gender.female
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
                       cardChild: GenderCard(
                         cardIcon: Icon(FontAwesomeIcons.venus, size: 60),
                         cardTitle: 'FEMALE',
@@ -67,12 +72,50 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              color: activeCardColor,
+              color: kActiveCardColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text('HEIGHT')
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        '$height',
+                        style: kHeightTextStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      )
+                    ],
+                  ),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                        inactiveTrackColor: Color(0xFF8D8E98),
+                        activeTrackColor: Colors.white,
+                        overlayColor: Color(0xFFEB1555).withOpacity(0.4),
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 10),
+                        overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 20),
+                        thumbColor: Color(0xFFEB1555)),
+                    child: Slider(
+                      value: height.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -82,13 +125,13 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                     cardChild: Column(),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                     cardChild: Column(),
                   ),
                 ),
@@ -99,7 +142,7 @@ class _InputPageState extends State<InputPage> {
             color: Color(0xFFEB1555),
             margin: EdgeInsets.only(top: 10),
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           ),
         ],
       ),
