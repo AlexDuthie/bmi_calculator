@@ -20,6 +20,6 @@ const kBottomContainerStyle = TextStyle(
 );
 
 const kResultTextStyle = TextStyle (
-  fontSize: 60,
+  fontSize: 40,
   fontWeight: FontWeight.bold
 );
