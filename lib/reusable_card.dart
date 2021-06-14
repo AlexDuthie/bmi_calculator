@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'input_page.dart';
+
 class ReusableCard extends StatelessWidget {
-  ReusableCard({required this.color, required this.cardChild});
+  ReusableCard({required this.color, required this.cardChild, this.gender = Gender.undisclosed});
 
   final Color color;
   final Widget cardChild;
+  final Gender gender;
 
   @override
   Widget build(BuildContext context) {
