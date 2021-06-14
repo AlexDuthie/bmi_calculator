@@ -5,11 +5,11 @@ const Color kActiveCardColor = Color(0XFF1d1E33);
 const kInactiveCardColor = Color(0xFF111328);
 
 const kHeightTextStyle = TextStyle(
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: FontWeight.w900
 );
 
 const kLabelTextStyle = TextStyle(
-  fontSize: 18,
+  fontSize: 20,
   color: Color(0xFF8D8E98),
 );

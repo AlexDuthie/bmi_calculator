@@ -18,6 +18,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.undisclosed;
   int height = 180;
+  int weight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class _InputPageState extends State<InputPage> {
                           ? kActiveCardColor
                           : kInactiveCardColor,
                       cardChild: GenderCard(
-                        cardIcon: Icon(FontAwesomeIcons.mars, size: 60),
+                        cardIcon: Icon(FontAwesomeIcons.male, size: 60),
                         cardTitle: 'MALE',
                       ),
                     ),
@@ -61,7 +62,7 @@ class _InputPageState extends State<InputPage> {
                           ? kActiveCardColor
                           : kInactiveCardColor,
                       cardChild: GenderCard(
-                        cardIcon: Icon(FontAwesomeIcons.venus, size: 60),
+                        cardIcon: Icon(FontAwesomeIcons.female, size: 60),
                         cardTitle: 'FEMALE',
                       ),
                     ),
@@ -126,7 +127,41 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: kActiveCardColor,
-                    cardChild: Column(),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          '$weight',
+                          style: kHeightTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              function: (){
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            SizedBox(width: 10,),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              function: (){
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
@@ -140,12 +175,37 @@ class _InputPageState extends State<InputPage> {
           ),
           Container(
             color: Color(0xFFEB1555),
-            margin: EdgeInsets.only(top: 10),
             width: double.infinity,
             height: kBottomContainerHeight,
           ),
         ],
       ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+
+  RoundIconButton({
+    this.icon = FontAwesomeIcons.question,
+    required this.function
+  });
+
+  final IconData icon;
+  final Function function;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      elevation: 0,
+      onPressed: function(),
+      shape: CircleBorder(),
+      fillColor: Color(0XFF4C4F5B),
+      constraints: BoxConstraints.tightFor(
+        width: 56,
+        height: 56,
+      ),
+      child: Icon(icon),
     );
   }
 }
